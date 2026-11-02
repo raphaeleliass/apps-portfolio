@@ -663,15 +663,11 @@ footer a:focus-visible {
 }
 @media (prefers-reduced-motion: no-preference) {
   header > .brand,
-  header nav > *,
-  footer {
-    animation: enter-content 520ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
-  }
-  footer {
-    animation-delay: 180ms;
+  header nav > * {
+    animation: enter-content 800ms cubic-bezier(0.22, 0.68, 0, 1) backwards;
   }
   main h1 {
-    animation: enter-title 780ms cubic-bezier(0.16, 1, 0.3, 1) 40ms backwards;
+    animation: enter-title 1200ms cubic-bezier(0.22, 0.68, 0, 1) 100ms backwards;
   }
   main .intro > p,
   main .back,
@@ -681,24 +677,26 @@ footer a:focus-visible {
   main .notice,
   main.notice > p,
   main.notice > a {
-    animation: enter-content 480ms cubic-bezier(0.16, 1, 0.3, 1) 120ms backwards;
+    animation: enter-content 900ms cubic-bezier(0.22, 0.68, 0, 1) 220ms
+      backwards;
   }
   .projects li {
-    animation: enter-content 580ms cubic-bezier(0.16, 1, 0.3, 1) 80ms backwards;
+    animation: enter-content 1000ms cubic-bezier(0.22, 0.68, 0, 1) 180ms
+      backwards;
   }
   .projects li:nth-child(2) {
-    animation-delay: 115ms;
+    animation-delay: 280ms;
   }
   .projects li:nth-child(3) {
-    animation-delay: 150ms;
+    animation-delay: 380ms;
   }
   .projects li:nth-child(4) {
-    animation-delay: 185ms;
+    animation-delay: 480ms;
   }
   .projects li:nth-child(5) {
-    animation-delay: 220ms;
+    animation-delay: 580ms;
   }
   .projects li:nth-child(6) {
-    animation-delay: 255ms;
+    animation-delay: 680ms;
   }
 }

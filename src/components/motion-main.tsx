@@ -32,29 +32,38 @@ export function MotionMain(props: ComponentProps<"main">) {
         }
         gsap.set(root, { opacity: 1, clearProps: "transform,filter" });
 
-        const readme = root.querySelector(".readme");
-        if (readme) {
-          // Leave already visible content untouched, including restored scroll positions.
-          for (const block of readme.querySelectorAll(
-            ":scope > h2, :scope > .readme-hint, .markdown-body > h2, .markdown-body > h3, .markdown-body > pre",
-          )) {
-            if (block.getBoundingClientRect().top < window.innerHeight)
-              continue;
-            gsap.from(block, {
-              y: 8,
-              opacity: 0.7,
-              duration: 0.55,
-              ease: "power3.out",
+        const blocks = [
+          ...root.querySelectorAll(
+            ".projects li, .readme > h2, .readme > .readme-hint, .markdown-body > h2, .markdown-body > h3, .markdown-body > pre",
+          ),
+          root.closest(".shell")?.querySelector("footer"),
+        ];
+        // Offscreen entrances follow scroll instead of finishing before they are seen.
+        for (const block of blocks) {
+          if (!block || block.getBoundingClientRect().top < window.innerHeight)
+            continue;
+          gsap.set(block, { animation: "none" });
+          gsap.fromTo(
+            block,
+            { y: 12, opacity: 0.55 },
+            {
+              y: 0,
+              opacity: 1,
+              ease: "none",
               clearProps: "transform,opacity",
               scrollTrigger: {
                 trigger: block,
-                start: "clamp(top 92%)",
-                end: "clamp(top 70%)",
+                start: "clamp(top 96%)",
+                end: "clamp(top 65%)",
+                scrub: 0.35,
                 once: true,
-                fastScrollEnd: 1800,
               },
-            });
-          }
+            },
+          );
+        }
+
+        const readme = root.querySelector(".readme");
+        if (readme) {
           const readingLine = root.querySelector(".reading-progress");
           if (readingLine) {
             gsap.fromTo(

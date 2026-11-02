@@ -25,7 +25,7 @@ export function MotionMain(props: ComponentProps<"main">) {
           gsap.to(progress, {
             scaleX: 1,
             opacity: 0,
-            duration: 0.4,
+            duration: 0.3,
             overwrite: true,
             clearProps: "all",
           });
@@ -34,29 +34,25 @@ export function MotionMain(props: ComponentProps<"main">) {
 
         const readme = root.querySelector(".readme");
         if (readme) {
-          const readmeIntro = readme.querySelectorAll(
-            ":scope > h2, :scope > .readme-hint",
-          );
-          gsap.from(readmeIntro, {
-            y: 20,
-            opacity: 0,
-            duration: 0.7,
-            stagger: 0.06,
-            ease: "expo.out",
-            clearProps: "transform,opacity",
-            scrollTrigger: { trigger: readme, start: "top 95%", once: true },
-          });
-          // Keep long documents readable; only section headings and code get scroll accents.
+          // Leave already visible content untouched, including restored scroll positions.
           for (const block of readme.querySelectorAll(
-            ".markdown-body > h2, .markdown-body > h3, .markdown-body > pre",
+            ":scope > h2, :scope > .readme-hint, .markdown-body > h2, .markdown-body > h3, .markdown-body > pre",
           )) {
+            if (block.getBoundingClientRect().top < window.innerHeight)
+              continue;
             gsap.from(block, {
-              y: 16,
-              opacity: 0.35,
-              duration: 0.65,
-              ease: "expo.out",
+              y: 8,
+              opacity: 0.7,
+              duration: 0.55,
+              ease: "power3.out",
               clearProps: "transform,opacity",
-              scrollTrigger: { trigger: block, start: "top 97%", once: true },
+              scrollTrigger: {
+                trigger: block,
+                start: "clamp(top 92%)",
+                end: "clamp(top 70%)",
+                once: true,
+                fastScrollEnd: 1800,
+              },
             });
           }
           const readingLine = root.querySelector(".reading-progress");
@@ -71,7 +67,7 @@ export function MotionMain(props: ComponentProps<"main">) {
                   start: 0,
                   end: "max",
                   invalidateOnRefresh: true,
-                  scrub: true,
+                  scrub: 0.16,
                 },
               },
             );
@@ -79,7 +75,7 @@ export function MotionMain(props: ComponentProps<"main">) {
             const observer = new ResizeObserver(() => {
               cancelAnimationFrame(refreshFrame);
               refreshFrame = requestAnimationFrame(() =>
-                ScrollTrigger.refresh(),
+                ScrollTrigger.refresh(true),
               );
             });
             observer.observe(root.closest(".shell") ?? root);

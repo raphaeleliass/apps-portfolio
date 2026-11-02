@@ -44,9 +44,9 @@ export function MotionLink({
       );
     }
     gsap.to(main, {
-      y: href === "/" ? 10 : -10,
-      opacity: 0.45,
-      duration: 0.18,
+      y: href === "/" ? 4 : -4,
+      opacity: 0.8,
+      duration: 0.14,
       ease: "power2.in",
       overwrite: true,
       onComplete: () => router.push(href),

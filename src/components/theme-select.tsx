@@ -42,12 +42,12 @@ export function ThemeSelect() {
         if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           gsap.fromTo(
             scope.current,
-            { rotation: -50, scale: 0.88 },
+            { rotation: -18, scale: 0.97 },
             {
               rotation: 0,
               scale: 1,
-              duration: 0.65,
-              ease: "expo.out",
+              duration: 0.38,
+              ease: "power3.out",
               overwrite: true,
               clearProps: "transform",
             },

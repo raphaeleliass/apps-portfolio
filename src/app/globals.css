@@ -639,3 +639,66 @@ footer a:focus-visible {
     display: none;
   }
 }
+
+/* Start entrances with the server HTML so hydration never hides visible content. */
+@keyframes enter-content {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes enter-title {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(28px);
+  }
+  to {
+    clip-path: inset(0);
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  header > .brand,
+  header nav > *,
+  footer {
+    animation: enter-content 750ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+  footer {
+    animation-delay: 350ms;
+  }
+  main h1 {
+    animation: enter-title 1050ms cubic-bezier(0.16, 1, 0.3, 1) 80ms backwards;
+  }
+  main .intro > p,
+  main .back,
+  main .detail-actions > a,
+  main .language,
+  main .status,
+  main .notice,
+  main.notice > p,
+  main.notice > a {
+    animation: enter-content 650ms cubic-bezier(0.16, 1, 0.3, 1) 200ms backwards;
+  }
+  .projects li {
+    animation: enter-content 800ms cubic-bezier(0.16, 1, 0.3, 1) 120ms backwards;
+  }
+  .projects li:nth-child(2) {
+    animation-delay: 175ms;
+  }
+  .projects li:nth-child(3) {
+    animation-delay: 230ms;
+  }
+  .projects li:nth-child(4) {
+    animation-delay: 285ms;
+  }
+  .projects li:nth-child(5) {
+    animation-delay: 340ms;
+  }
+  .projects li:nth-child(6) {
+    animation-delay: 395ms;
+  }
+}

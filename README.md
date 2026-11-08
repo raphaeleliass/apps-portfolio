@@ -29,6 +29,8 @@ bunx wrangler secret put GITHUB_TOKEN
 
 No environment `production` do GitHub Actions, cadastre `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID`. O token Cloudflare precisa de permissão para publicar Workers na conta de destino; ele é independente do token GitHub da aplicação.
 
+Para acessar o servidor de desenvolvimento por Tailscale ou outro hostname, crie `.env.local` com `NEXT_DEV_ALLOWED_ORIGINS=seu-hostname`. Para vários hosts, separe os nomes por vírgula, sem espaços, protocolo ou porta. Esse arquivo é local e ignorado pelo Git.
+
 ## Uso
 
 ```sh

@@ -4,6 +4,7 @@ import { MotionArrow } from "@/components/motion-arrow";
 import { MotionLink } from "@/components/motion-link";
 import { SiteMotion } from "@/components/site-motion";
 import { ThemeSelect } from "@/components/theme-select";
+import { motionBoot } from "@/lib/motion-boot";
 import { siteDescription, siteTitle, siteUrl } from "@/lib/site-metadata";
 import "./tailwind.css";
 import "./globals.css";
@@ -58,9 +59,16 @@ export default function RootLayout({
 }) {
   return (
     <html
+      suppressHydrationWarning
       lang="pt-BR"
       className={`${sans.variable} ${serif.variable} ${appNames.variable} ${copy.variable}`}
     >
+      <head>
+        <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Static pre-paint motion bootstrap with a fail-open timer.
+          dangerouslySetInnerHTML={{ __html: motionBoot }}
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"

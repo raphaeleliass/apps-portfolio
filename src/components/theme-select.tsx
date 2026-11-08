@@ -36,17 +36,31 @@ export function ThemeSelect() {
       title={label}
       disabled={theme === null}
       onClick={contextSafe(() => {
+        const current = getComputedStyle(document.body);
+        const previousColors = {
+          backgroundColor: current.backgroundColor,
+          color: current.color,
+        };
         const next = theme === "dark" ? "light" : "dark";
         document.documentElement.dataset.theme = next;
         setTheme(next);
         if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          const colors = getComputedStyle(document.documentElement);
+          gsap.fromTo(document.body, previousColors, {
+            backgroundColor: colors.getPropertyValue("--background"),
+            color: colors.getPropertyValue("--foreground"),
+            duration: 0.65,
+            ease: "power2.inOut",
+            overwrite: "auto",
+            clearProps: "backgroundColor,color",
+          });
           gsap.fromTo(
             scope.current,
             { rotation: -18, scale: 0.97 },
             {
               rotation: 0,
               scale: 1,
-              duration: 0.38,
+              duration: 0.7,
               ease: "power3.out",
               overwrite: true,
               clearProps: "transform",

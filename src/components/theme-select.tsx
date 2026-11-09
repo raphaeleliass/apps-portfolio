@@ -49,18 +49,18 @@ export function ThemeSelect() {
           gsap.fromTo(document.body, previousColors, {
             backgroundColor: colors.getPropertyValue("--background"),
             color: colors.getPropertyValue("--foreground"),
-            duration: 0.65,
+            duration: 0.4,
             ease: "power2.inOut",
             overwrite: "auto",
             clearProps: "backgroundColor,color",
           });
           gsap.fromTo(
-            scope.current,
-            { rotation: -18, scale: 0.97 },
+            scope.current?.querySelectorAll("svg") ?? [],
+            { rotation: -70, scale: 0.85 },
             {
               rotation: 0,
               scale: 1,
-              duration: 0.7,
+              duration: 0.5,
               ease: "power3.out",
               overwrite: true,
               clearProps: "transform",

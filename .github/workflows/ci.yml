@@ -2,7 +2,7 @@ name: Check and deploy
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
 permissions:
   contents: read
@@ -26,7 +26,7 @@ jobs:
       - run: bun test
       - run: bun run build:worker
   deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     needs: check
     runs-on: ubuntu-latest
     timeout-minutes: 15

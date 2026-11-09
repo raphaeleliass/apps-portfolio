@@ -47,7 +47,7 @@ bunx wrangler login
 bun run deploy
 ```
 
-O workflow valida PRs e publica pushes na `main` após as verificações. Também permite execução manual na `main`. O domínio `apps.raphaelelias.dev` é configurado automaticamente pelo Wrangler durante o deploy. Para reverter uma publicação, use `bunx wrangler rollback`.
+O workflow valida PRs e publica pushes na `master` após as verificações. Também permite execução manual na `master`. O domínio `apps.raphaelelias.dev` é configurado automaticamente pelo Wrangler durante o deploy. Para reverter uma publicação, use `bunx wrangler rollback`.
 
 ## Desenvolvimento
 

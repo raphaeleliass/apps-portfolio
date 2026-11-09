@@ -53,6 +53,14 @@ O workflow valida PRs e publica pushes na `master` após as verificações. Tamb
 
 `src/app` contém as páginas e a API; `src/components`, a interface; `src/lib`, a integração GitHub e os metadados. `/api/projects` expõe somente o catálogo público e retorna 503 quando indisponível.
 
+## SEO e indexação
+
+`src/lib/project-seo.ts` mantém títulos e resumos editoriais dos projetos atuais. Atualize-os quando o propósito de um aplicativo mudar. Novos repositórios usam automaticamente o nome e a descrição do GitHub. Os resumos aparecem na home, nos detalhes, nos metadados sociais e no JSON-LD.
+
+Após publicar, verifique a propriedade de domínio no [Google Search Console](https://search.google.com/search-console) usando o registro DNS fornecido pelo Google. Envie `https://apps.raphaelelias.dev/sitemap.xml` e inspecione a home e as páginas dos projetos para conferir o HTML rastreado e solicitar indexação. Acompanhe consultas, impressões, cliques e páginas indexadas para orientar as próximas melhorias de conteúdo.
+
+O sitemap e os dados estruturados ajudam na descoberta e compreensão das páginas; não garantem indexação, resultados especiais ou posições. Mantenha as descrições e os READMEs específicos de cada aplicativo: documentação padrão de scaffolding não explica seu produto aos visitantes.
+
 ```sh
 bun run format
 bun run typecheck

@@ -7,7 +7,10 @@ export function AppsIntro() {
           <span className="intro-signature">em destaque.</span>
         </em>
       </h1>
-      <p>Uma seleção do que construo.</p>
+      <p>
+        Aplicativos e projetos de software de Raphael Elias. Explore as
+        aplicações, as tecnologias e o código no GitHub.
+      </p>
     </section>
   );
 }

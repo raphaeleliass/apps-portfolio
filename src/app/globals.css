@@ -172,6 +172,15 @@ h2 {
   letter-spacing: -0.025em;
   line-height: 1.25;
 }
+.project-description {
+  margin: 6px 0 0;
+  max-width: 65ch;
+  font-family: var(--font-copy), sans-serif;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
 .details {
   display: inline-flex;
   align-items: center;

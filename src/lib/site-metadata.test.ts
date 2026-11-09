@@ -31,15 +31,15 @@ test("project metadata replaces home URLs and titles consistently", () => {
     "Gestão de escalas.",
     "/projetos/escala",
   );
-  expect(metadata.title).toEqual({ absolute: "Raphael Elias - escala" });
+  expect(metadata.title).toEqual({ absolute: "escala | Raphael Elias" });
   expect(metadata.alternates?.canonical).toBe(`${siteUrl}/projetos/escala`);
   expect(metadata.openGraph).toMatchObject({
     url: `${siteUrl}/projetos/escala`,
-    title: "Raphael Elias - escala",
+    title: "escala | Raphael Elias",
     description: "Gestão de escalas.",
   });
   expect(metadata.twitter).toMatchObject({
-    title: "Raphael Elias - escala",
+    title: "escala | Raphael Elias",
     description: "Gestão de escalas.",
   });
 });

@@ -497,7 +497,6 @@ footer {
   padding-right: 0.05em;
 }
 
-.route-progress,
 .reading-progress {
   position: fixed;
   inset: 0 0 auto;
@@ -507,10 +506,6 @@ footer {
   transform-origin: left;
   pointer-events: none;
   z-index: 20;
-}
-.route-progress {
-  opacity: 0;
-  z-index: 21;
 }
 .motion-arrow {
   position: relative;
@@ -525,7 +520,7 @@ footer {
 .motion-arrow .motion-arrow-copy {
   position: absolute;
   inset: 0;
-  transform: translate(-130%, 130%);
+  translate: -130% 130%;
 }
 .brand,
 .details,
@@ -562,12 +557,6 @@ footer a:focus-visible {
 .motion-word-mask {
   padding-bottom: 0.14em;
   margin-bottom: -0.14em;
-}
-@media (prefers-reduced-motion: no-preference) {
-  html[data-motion="pending"] .shell > header,
-  html[data-motion="pending"] .shell > main {
-    visibility: hidden;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .projects li:hover::after,

@@ -3,8 +3,15 @@ import { AppsIntro } from "@/components/apps-intro";
 import { MotionArrow } from "@/components/motion-arrow";
 import { MotionLink } from "@/components/motion-link";
 import { MotionMain } from "@/components/motion-main";
+import { StructuredData } from "@/components/structured-data";
 import { getCatalog } from "@/lib/github";
-import { pageMetadata, siteDescription, siteTitle } from "@/lib/site-metadata";
+import { projectSeo } from "@/lib/project-seo";
+import {
+  catalogStructuredData,
+  pageMetadata,
+  siteDescription,
+  siteTitle,
+} from "@/lib/site-metadata";
 export const metadata = pageMetadata(siteTitle, siteDescription, "/");
 
 export default async function Home() {
@@ -12,6 +19,9 @@ export default async function Home() {
   const { projects, status } = await getCatalog();
   return (
     <MotionMain id="conteudo" className="apps-screen">
+      {(status === "ready" || status === "stale") && (
+        <StructuredData data={catalogStructuredData(projects)} />
+      )}
       <AppsIntro />
       <section className="catalog" aria-label="Aplicativos selecionados">
         {status === "unconfigured" && (
@@ -59,8 +69,12 @@ export default async function Home() {
                     {project.name}
                   </MotionLink>
                 </h2>
+                <p className="project-description">
+                  {projectSeo(project).description}
+                </p>
                 <MotionLink
                   className="details"
+                  aria-label={`Ver detalhes de ${project.name}`}
                   href={`/projetos/${project.slug}`}
                 >
                   Ver detalhes

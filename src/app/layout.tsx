@@ -4,7 +4,12 @@ import { MotionArrow } from "@/components/motion-arrow";
 import { MotionLink } from "@/components/motion-link";
 import { SiteMotion } from "@/components/site-motion";
 import { ThemeSelect } from "@/components/theme-select";
-import { siteDescription, siteTitle, siteUrl } from "@/lib/site-metadata";
+import {
+  siteDescription,
+  siteName,
+  siteTitle,
+  siteUrl,
+} from "@/lib/site-metadata";
 import "./tailwind.css";
 import "./globals.css";
 const sans = Geist({ variable: "--font-sans", subsets: ["latin"] });
@@ -27,8 +32,8 @@ const serif = Instrument_Serif({
 });
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  applicationName: "Apps",
-  title: { default: siteTitle, template: "Raphael Elias - %s" },
+  applicationName: siteName,
+  title: { default: siteTitle, template: "%s | Raphael Elias" },
   description: siteDescription,
   authors: [{ name: "Raphael Elias", url: "https://raphaelelias.dev" }],
   creator: "Raphael Elias",
@@ -81,7 +86,7 @@ export default function RootLayout({
                   "@type": "WebSite",
                   "@id": `${siteUrl}/#website`,
                   url: siteUrl,
-                  name: siteTitle,
+                  name: siteName,
                   description: siteDescription,
                   inLanguage: "pt-BR",
                   publisher: { "@id": "https://raphaelelias.dev/#person" },

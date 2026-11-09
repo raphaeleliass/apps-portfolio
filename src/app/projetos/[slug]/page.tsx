@@ -6,8 +6,10 @@ import { MotionArrow } from "@/components/motion-arrow";
 import { MotionLink } from "@/components/motion-link";
 import { MotionMain } from "@/components/motion-main";
 import { ProjectReadme } from "@/components/project-readme";
+import { StructuredData } from "@/components/structured-data";
 import { getCatalog } from "@/lib/github";
-import { pageMetadata } from "@/lib/site-metadata";
+import { projectSeo } from "@/lib/project-seo";
+import { pageMetadata, projectStructuredData } from "@/lib/site-metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -27,9 +29,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
   const project = projects.find((item) => item.slug === slug);
   if (!project) notFound();
+  const seo = projectSeo(project);
   return pageMetadata(
-    project.name,
-    project.description,
+    seo.title,
+    seo.description,
     `/projetos/${encodeURIComponent(project.slug)}`,
   );
 }
@@ -51,12 +54,13 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
   return (
     <MotionMain id="conteudo" className="project-page">
+      <StructuredData data={projectStructuredData(project)} />
       <MotionLink className="back" href="/">
         <ArrowLeft size={16} aria-hidden="true" /> Todos os projetos
       </MotionLink>
       <section className="intro">
         <h1>{project.name}</h1>
-        <p>{project.description}</p>
+        <p>{projectSeo(project).description}</p>
       </section>
       <div className="detail-actions">
         {project.website && (
